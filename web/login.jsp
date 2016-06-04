@@ -13,7 +13,7 @@
     </head>
     <body>
         <h3>Please login to continue.</h3>
-        <form action="Login" method="post">
+        <form action="LoginServlet" method="post">
             <table>
                 <tr>
                     <td>Username: </td>
@@ -28,6 +28,6 @@
             </table>
             <input type="submit" value="Start"/>
         </form>
-        <div>this web-application is part of CS525 &copy; 2016</div>
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>

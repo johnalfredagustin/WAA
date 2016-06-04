@@ -5,11 +5,10 @@
  */
 package com.midterms.servlet;
 
+import com.midterms.db.ProductDB;
 import com.midterms.db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,8 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author John Agustin
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "ViewServlet", urlPatterns = {"/ViewServlet"})
+public class ViewServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +40,10 @@ public class Login extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Login</title>");
+            out.println("<title>Servlet view</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet view at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,7 +62,6 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**
@@ -77,23 +75,9 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        //validation
-        List<String> loginErrMsg = new ArrayList<>();
-        loginErrMsg.add((username == null || username.equals("")) ? "Username must be entered" : "");
-        loginErrMsg.add((password == null || password.equals("")) ? "Password must be entered" : "");
-        request.setAttribute("loginErrMsg", loginErrMsg);
-        if (username == null || username.equals("") || password == null || password.equals("")) {
-            RequestDispatcher view = request.getRequestDispatcher("login.jsp");
-            view.forward(request, response);
-        } else if (UserDB.login(username, password)) {
-            request.setAttribute("currentUser", UserDB.getCurrentUser());
-            RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
-            view.forward(request, response);
-        }
-
+        request.setAttribute("productList", ProductDB.getProductList());
+        RequestDispatcher view = request.getRequestDispatcher("view.jsp");
+        view.forward(request, response);
     }
 
     /**

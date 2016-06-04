@@ -18,5 +18,6 @@
         <form action="login.jsp" method="get">
             <input type="submit" value="Start"/>
         </form>
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>
