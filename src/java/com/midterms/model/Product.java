@@ -24,6 +24,13 @@ public class Product {
         this.price = price;
         this.description = description;
     }
+    
+    public Product(int index, String name, double price, String description) {
+        this.index = index;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+    }
 
     public int getIndex() {
         return index;

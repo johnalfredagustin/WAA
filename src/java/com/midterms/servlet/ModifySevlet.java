@@ -6,8 +6,11 @@
 package com.midterms.servlet;
 
 import com.midterms.db.ProductDB;
+import com.midterms.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,7 +63,10 @@ public class ModifySevlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String index = request.getParameter("index");
+        request.setAttribute("prod", ProductDB.getProduct(Integer.parseInt(index)));
+        RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
+        view.forward(request, response);
     }
 
     /**
@@ -75,10 +81,35 @@ public class ModifySevlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String name = request.getParameter("name");
+        String price = request.getParameter("price");
+        String description = request.getParameter("description");
+        String submit = request.getParameter("submit");
         String index = request.getParameter("index");
-        request.setAttribute("searchedProduct", ProductDB.getProduct(Integer.parseInt(index)));
-        RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
-        view.forward(request, response);
+
+        if (submit.equalsIgnoreCase("cancel")) {
+            response.sendRedirect("welcome.jsp");
+        } else {
+            //validation
+            List<String> addErrMsg = new ArrayList<>();
+            addErrMsg.add((name == null || name.equals("")) ? "Product must have a name" : "");
+            addErrMsg.add((price == null || price.equals("")
+                    || ((!price.equals("")) && (!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))
+                    ? "Price must be between $1-850"
+                    : "");
+            request.setAttribute("addErrMsg", addErrMsg);
+            if (name == null || name.equals("") || price == null || price.equals("")
+                    || ((!price.equals("")) && ((!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))) {
+                
+                request.setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
+                RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
+                view.forward(request, response);
+            } else if (ProductDB.modifyProduct(new Product(Integer.parseInt(index), name, Double.parseDouble(price), description))) {
+                getServletContext().setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
+                RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
+                view.forward(request, response);
+            }
+        }
 
     }
 

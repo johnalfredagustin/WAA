@@ -32,6 +32,16 @@ public class ProductDB {
         return productList.add(product);
     }
     
+    public static boolean modifyProduct(Product product) {
+        for (Product p : productList) {
+            if (p.getIndex() == product.getIndex()) {
+                productList.add(p.getIndex()-1, p);
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public static Product getProduct(int index) {
         for (Product product : productList) {
             if (product.getIndex() == index) {

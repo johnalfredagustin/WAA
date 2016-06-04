@@ -14,7 +14,7 @@
     <body>
         <jsp:directive.include file="footer.jsp" />
         <h3>Enter new Product info</h3>
-        <form action="AddServlet" method="post">
+        <form action="AddServlet" method="get">
             <table>
                 <tr>
                     <td>Name:</td>

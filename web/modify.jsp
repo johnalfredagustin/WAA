@@ -13,7 +13,7 @@
     </head>
     <body>
         <h3>Modify Product Info</h3>
-        <form>
+        <form action="ModifyServlet" method="post">
             <jsp:directive.include file="addmodifyTemplate.jsp" />
             <input type="submit" name="submit" value="Modify" />
         </form>
