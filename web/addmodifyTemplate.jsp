@@ -15,17 +15,17 @@
             <table>
                 <tr>
                     <td>Name:</td>
-                    <td><input type="text" name="name" value="${prodName}"/></td>
+                    <td><input type="text" name="name" value="${prod.name}"/></td>
                     <td>${addErrMsg.get(0)}</td>
                 </tr>
                 <tr>
                     <td>Price:</td>
-                    <td><input type="text" name="price" value="${prodPrice}"/></td>
+                    <td><input type="text" name="price" value="${prod.Price}"/></td>
                     <td>${addErrMsg.get(1)}</td>
                 </tr>
                 <tr>
                     <td>Description:</td>
-                    <td><input type="text" name="description" value="${prodDescription}"/></td>
+                    <td><input type="text" name="description" value="${prod.Description}"/></td>
                     <td></td>
                 </tr>
             </table>

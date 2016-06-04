@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author John Agustin
  */
-@WebServlet(name = "ModifySevlet", urlPatterns = {"/ModifySevlet"})
-public class ModifySevlet extends HttpServlet {
+@WebServlet(name = "DeleteServlet", urlPatterns = {"/DeleteServlet"})
+public class DeleteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +42,10 @@ public class ModifySevlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ModifySevlet</title>");
+            out.println("<title>Servlet DeleteServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ModifySevlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,8 +64,11 @@ public class ModifySevlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String index = request.getParameter("index");
-        request.setAttribute("prod", ProductDB.getProduct(Integer.parseInt(index)));
-        RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
+        getServletContext().getAttribute("productList");
+        
+        ProductDB.removeProduct(Integer.parseInt(index));
+
+        RequestDispatcher view = request.getRequestDispatcher("view.jsp");
         view.forward(request, response);
     }
 
@@ -80,37 +83,7 @@ public class ModifySevlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String name = request.getParameter("name");
-        String price = request.getParameter("price");
-        String description = request.getParameter("description");
-        String submit = request.getParameter("submit");
-        String index = request.getParameter("index");
-
-        if (submit.equalsIgnoreCase("cancel")) {
-            response.sendRedirect("welcome.jsp");
-        } else {
-            //validation
-            List<String> addErrMsg = new ArrayList<>();
-            addErrMsg.add((name == null || name.equals("")) ? "Product must have a name" : "");
-            addErrMsg.add((price == null || price.equals("")
-                    || ((!price.equals("")) && (!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))
-                    ? "Price must be between $1-850"
-                    : "");
-            request.setAttribute("addErrMsg", addErrMsg);
-            if (name == null || name.equals("") || price == null || price.equals("")
-                    || ((!price.equals("")) && ((!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))) {
-                
-                request.setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
-                RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
-                view.forward(request, response);
-            } else if (ProductDB.modifyProduct(new Product(Integer.parseInt(index), name, Double.parseDouble(price), description))) {
-                getServletContext().setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
-                RequestDispatcher view = request.getRequestDispatcher("view.jsp");
-                view.forward(request, response);
-            }
-        }
-
+        processRequest(request, response);
     }
 
     /**

@@ -31,12 +31,14 @@
                         <td>${prod.price}</td>
                         <td>${prod.description}</td>
                         <td><a href="${'ModifySevlet?index='.concat(prod.index)}">Edit</a></td>
-                        <td><a href="${'DeleteSevlet?index='.concat(prod.index)}">Add</a></td>
+                        <td><a href="${'DeleteServlet?index='.concat(prod.index)}">Delete</a></td>
                         <td></td>
                     </tr>
                 </c:forEach>
             </table>
+            
         </form>
+        <form action="welcome.jsp"><input type="submit" value="Cancel"/></form>
         <jsp:directive.include file="footer.jsp" />
     </body>
 </html>

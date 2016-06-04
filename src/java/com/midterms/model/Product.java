@@ -15,17 +15,17 @@ public class Product {
     
     private int index;
     private String name;
-    private double price;
+    private Double price;
     private String description;
 
-    public Product(String name, double price, String description) {
+    public Product(String name, Double price, String description) {
         this.index = ProductDB.getProductList().size() + 1;
         this.name = name;
         this.price = price;
         this.description = description;
     }
     
-    public Product(int index, String name, double price, String description) {
+    public Product(int index, String name, Double price, String description) {
         this.index = index;
         this.name = name;
         this.price = price;
@@ -48,11 +48,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

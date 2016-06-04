@@ -98,7 +98,7 @@ public class AddServlet extends HttpServlet {
             if (name == null || name.equals("") || price == null || price.equals("")
                     || ((!price.equals("")) && ((!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))) {
                 
-                request.setAttribute("prod", new Product(name, Double.parseDouble(price), description));
+                request.setAttribute("prod", new Product(name, null, description));
 //                request.setAttribute("prodName", name);
 //                request.setAttribute("prodPrice", price);
 //                request.setAttribute("prodDescription", description);

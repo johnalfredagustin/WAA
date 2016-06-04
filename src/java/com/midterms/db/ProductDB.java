@@ -51,5 +51,15 @@ public class ProductDB {
         return null;
     }
     
+    public static Product removeProduct(int index) {
+        int i = 0;
+        for (Product product : productList) {
+            if (product.getIndex() == index) {
+                return productList.remove(i);
+            }
+            i++;
+        }
+        return null;
+    }
     
 }
