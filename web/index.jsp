@@ -14,7 +14,7 @@
     <body>
         <h1>This is the Midterm Programming Exam</h1>
         <h3>To start the web-application please click start.</h3>
-        <h3>The number of current users currently logged in is: ${login.count}</h3>
+        <h3>The number of current users currently logged in is: ${sessionCounter}</h3>
         <form action="login.jsp" method="get">
             <input type="submit" value="Start"/>
         </form>

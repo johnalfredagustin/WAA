@@ -99,13 +99,10 @@ public class AddServlet extends HttpServlet {
                     || ((!price.equals("")) && ((!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))) {
                 
                 request.setAttribute("prod", new Product(name, null, description));
-//                request.setAttribute("prodName", name);
-//                request.setAttribute("prodPrice", price);
-//                request.setAttribute("prodDescription", description);
                 RequestDispatcher view = request.getRequestDispatcher("add.jsp");
                 view.forward(request, response);
             } else if (ProductDB.addProduct(new Product(name, Double.parseDouble(price), description))) {
-                //getServletContext().setAttribute("productList", ProductDB.getProductList());
+                getServletContext().setAttribute("productList", ProductDB.getProductList());
                 RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
                 view.forward(request, response);
             }

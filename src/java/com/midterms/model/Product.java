@@ -6,6 +6,7 @@
 package com.midterms.model;
 
 import com.midterms.db.ProductDB;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Product {
     private String description;
 
     public Product(String name, Double price, String description) {
-        this.index = ProductDB.getProductList().size() + 1;
+        this.index = ProductDB.getMaxIndex();
         this.name = name;
         this.price = price;
         this.description = description;

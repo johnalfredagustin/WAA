@@ -22,8 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author John Agustin
  */
-@WebServlet(name = "ModifySevlet", urlPatterns = {"/ModifySevlet"})
-public class ModifySevlet extends HttpServlet {
+@WebServlet(name = "ModifyServlet", urlPatterns = {"/ModifyServlet"})
+public class ModifyServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -106,7 +106,8 @@ public class ModifySevlet extends HttpServlet {
                 view.forward(request, response);
             } else if (ProductDB.modifyProduct(new Product(Integer.parseInt(index), name, Double.parseDouble(price), description))) {
                 getServletContext().setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
-                RequestDispatcher view = request.getRequestDispatcher("view.jsp");
+                getServletContext().setAttribute("productList", ProductDB.getProductList());
+                RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
                 view.forward(request, response);
             }
         }

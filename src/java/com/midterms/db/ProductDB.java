@@ -18,10 +18,10 @@ public class ProductDB {
     private static List<Product> productList = new ArrayList<>();
     
     static {
-        productList.add(new Product("Chair", 199, "Wooden chair"));
-        productList.add(new Product("TV", 486, "42\" TV"));
-        productList.add(new Product("Pillow", 12, "White pillow"));
-        productList.add(new Product("Watch", 89, "Men watch"));
+        productList.add(new Product("Chair", new Double("199"), "Wooden chair"));
+        productList.add(new Product("TV", new Double("486"), "42\" TV"));
+        productList.add(new Product("Pillow", new Double("12"), "White pillow"));
+        productList.add(new Product("Watch", new Double("89"), "Men watch"));
     }
 
     public static List<Product> getProductList() {
@@ -33,11 +33,14 @@ public class ProductDB {
     }
     
     public static boolean modifyProduct(Product product) {
+        int index=0;
         for (Product p : productList) {
             if (p.getIndex() == product.getIndex()) {
-                productList.add(p.getIndex()-1, p);
+                productList.remove(p.getIndex());
+                productList.add(p.getIndex(), product);
                 return true;
             }
+            index++;
         }
         return false;
     }
@@ -62,4 +65,12 @@ public class ProductDB {
         return null;
     }
     
+    
+    public static int getMaxIndex() {
+        int maxIndex = 0;
+        for (Product product : productList) {
+            maxIndex++;
+        }
+        return maxIndex;
+    }
 }

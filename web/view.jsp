@@ -30,7 +30,7 @@
                         <td>${prod.name}</td>
                         <td>${prod.price}</td>
                         <td>${prod.description}</td>
-                        <td><a href="${'ModifySevlet?index='.concat(prod.index)}">Edit</a></td>
+                        <td><a href="${'ModifyServlet?index='.concat(prod.index)}">Edit</a></td>
                         <td><a href="${'DeleteServlet?index='.concat(prod.index)}">Delete</a></td>
                         <td></td>
                     </tr>

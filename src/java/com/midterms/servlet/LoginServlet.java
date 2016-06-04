@@ -92,6 +92,8 @@ public class LoginServlet extends HttpServlet {
             request.setAttribute("currentUser", UserDB.getCurrentUser());
             RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
             view.forward(request, response);
+        } else {
+            response.sendRedirect("errlogin.jsp");
         }
 
     }

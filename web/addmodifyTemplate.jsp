@@ -14,18 +14,23 @@
         
             <table>
                 <tr>
+                    <td></td>
+                    <td><input type="text" name="index" value="${prod.index}" hidden="true"/></td>
+                    <td></td>
+                </tr>
+                <tr>
                     <td>Name:</td>
                     <td><input type="text" name="name" value="${prod.name}"/></td>
                     <td>${addErrMsg.get(0)}</td>
                 </tr>
                 <tr>
                     <td>Price:</td>
-                    <td><input type="text" name="price" value="${prod.Price}"/></td>
+                    <td><input type="text" name="price" value="${prod.price}"/></td>
                     <td>${addErrMsg.get(1)}</td>
                 </tr>
                 <tr>
                     <td>Description:</td>
-                    <td><input type="text" name="description" value="${prod.Description}"/></td>
+                    <td><input type="text" name="description" value="${prod.description}"/></td>
                     <td></td>
                 </tr>
             </table>

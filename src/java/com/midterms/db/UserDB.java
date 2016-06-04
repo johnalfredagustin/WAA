@@ -26,7 +26,7 @@ public class UserDB {
     public static boolean login(String username, String password) {
         currentUser = new Person("", username, password, false);
         for (Person person : personList) {
-            if (person.equals(currentUser)) {
+            if (person.equals(currentUser) && person.isAdmin()) {
                 currentUser = person;
                 return true;
             }
