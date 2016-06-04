@@ -5,6 +5,8 @@
  */
 package com.midterms.model;
 
+import com.midterms.db.ProductDB;
+
 /**
  *
  * @author John Agustin
@@ -17,6 +19,7 @@ public class Product {
     private String description;
 
     public Product(String name, double price, String description) {
+        this.index = ProductDB.getProductList().size() + 1;
         this.name = name;
         this.price = price;
         this.description = description;

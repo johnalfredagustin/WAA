@@ -14,7 +14,7 @@
     </head>
     <body>
         <jsp:directive.include file="header.jsp" />
-        <form>
+        <form action="" method="post">
             <table>
                 <tr>
                     <th>Index</th>
@@ -30,13 +30,13 @@
                         <td>${prod.name}</td>
                         <td>${prod.price}</td>
                         <td>${prod.description}</td>
-                        <td><a href="${'/EditSevlet?index=' + prod.index}">Edit</a></td>
-                        <td><a href="${'/AddSevlet?index=' + prod.index}">Add</a></td>
+                        <td><a href="${'/ModifySevlet?index='.concat(prod.index)}">Edit</a></td>
+                        <td><a href="${'/AddSevlet?index='.concat(prod.index)}">Add</a></td>
                         <td></td>
                     </tr>
                 </c:forEach>
             </table>
         </form>
-
+        <jsp:directive.include file="footer.jsp" />
     </body>
 </html>

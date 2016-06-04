@@ -7,8 +7,11 @@ package com.midterms.servlet;
 
 import com.midterms.db.ProductDB;
 import com.midterms.db.UserDB;
+import com.midterms.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author John Agustin
  */
-@WebServlet(name = "ViewServlet", urlPatterns = {"/ViewServlet"})
-public class ViewServlet extends HttpServlet {
+@WebServlet(name = "AddServlet", urlPatterns = {"/AddServlet"})
+public class AddServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +43,10 @@ public class ViewServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet view</title>");
+            out.println("<title>Servlet AddServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet view at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,7 +64,7 @@ public class ViewServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
     /**
@@ -75,9 +78,38 @@ public class ViewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().setAttribute("productList", ProductDB.getProductList());
-        RequestDispatcher view = request.getRequestDispatcher("view.jsp");
-        view.forward(request, response);
+        
+        String name = request.getParameter("name");
+        String price = request.getParameter("price");
+        String description = request.getParameter("description");
+        String submit = request.getParameter("submit");
+
+        if (submit.equalsIgnoreCase("cancel")) {
+            response.sendRedirect("welcome.jsp");
+        } else {
+            //validation
+            List<String> addErrMsg = new ArrayList<>();
+            addErrMsg.add((name == null || name.equals("")) ? "Product must have a name" : "");
+            addErrMsg.add((price == null || price.equals("")
+                    || ((!price.equals("")) && (!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))
+                    ? "Price must be between $1-850"
+                    : "");
+            request.setAttribute("addErrMsg", addErrMsg);
+            if (name == null || name.equals("") || price == null || price.equals("")
+                    || ((!price.equals("")) && ((!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))) {
+                
+                request.setAttribute("prod", new Product(name, Double.parseDouble(price), description));
+//                request.setAttribute("prodName", name);
+//                request.setAttribute("prodPrice", price);
+//                request.setAttribute("prodDescription", description);
+                RequestDispatcher view = request.getRequestDispatcher("add.jsp");
+                view.forward(request, response);
+            } else if (ProductDB.addProduct(new Product(name, Double.parseDouble(price), description))) {
+                //getServletContext().setAttribute("productList", ProductDB.getProductList());
+                RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
+                view.forward(request, response);
+            }
+        }
     }
 
     /**

@@ -28,4 +28,18 @@ public class ProductDB {
         return productList;
     }
     
+    public static boolean addProduct(Product product) {
+        return productList.add(product);
+    }
+    
+    public static Product getProduct(int index) {
+        for (Product product : productList) {
+            if (product.getIndex() == index) {
+                return product;
+            }
+        }
+        return null;
+    }
+    
+    
 }

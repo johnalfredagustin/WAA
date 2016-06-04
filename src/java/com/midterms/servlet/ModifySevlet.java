@@ -6,7 +6,6 @@
 package com.midterms.servlet;
 
 import com.midterms.db.ProductDB;
-import com.midterms.db.UserDB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -20,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author John Agustin
  */
-@WebServlet(name = "ViewServlet", urlPatterns = {"/ViewServlet"})
-public class ViewServlet extends HttpServlet {
+@WebServlet(name = "ModifySevlet", urlPatterns = {"/ModifySevlet"})
+public class ModifySevlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class ViewServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet view</title>");
+            out.println("<title>Servlet ModifySevlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet view at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ModifySevlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,9 +74,12 @@ public class ViewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().setAttribute("productList", ProductDB.getProductList());
-        RequestDispatcher view = request.getRequestDispatcher("view.jsp");
+
+        String index = request.getParameter("index");
+        request.setAttribute("searchedProduct", ProductDB.getProduct(Integer.parseInt(index)));
+        RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
         view.forward(request, response);
+
     }
 
     /**
