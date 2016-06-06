@@ -7,19 +7,22 @@ package com.midterms.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import javax.servlet.http.HttpSessionAttributeListener;
+import javax.servlet.http.HttpSessionBindingEvent;
 
 /**
  * Web application lifecycle listener.
  *
  * @author John Agustin
  */
-public class ServletListener implements ServletContextListener, HttpSessionListener {
+public class ServletListener implements ServletContextListener, HttpSessionAttributeListener {
+
+    private ServletContextEvent psce;
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        sce.getServletContext().setAttribute("sessionCounter", 0);
+        psce = sce;
+        psce.getServletContext().setAttribute("sessionCounter", 0);
     }
 
     @Override
@@ -28,14 +31,25 @@ public class ServletListener implements ServletContextListener, HttpSessionListe
     }
 
     @Override
-    public void sessionCreated(HttpSessionEvent se) {
-        Integer oldCount = (Integer)se.getSession().getServletContext().getAttribute("sessionCounter");
-        oldCount++;
-        se.getSession().getServletContext().setAttribute("sessionCounter", oldCount);
+    public void attributeAdded(HttpSessionBindingEvent event) {
+        Integer oldCount = (Integer) psce.getServletContext().getAttribute("sessionCounter");
+        if (event.getName().equals("Auth")) {
+            oldCount++;
+        }
+        psce.getServletContext().setAttribute("sessionCounter", oldCount);
     }
 
     @Override
-    public void sessionDestroyed(HttpSessionEvent se) {
+    public void attributeRemoved(HttpSessionBindingEvent event) {
+        Integer oldCount = (Integer) psce.getServletContext().getAttribute("sessionCounter");
+        if (event.getName().equals("Auth")) {
+            oldCount--;
+        }
+        psce.getServletContext().setAttribute("sessionCounter", oldCount);
+    }
+
+    @Override
+    public void attributeReplaced(HttpSessionBindingEvent event) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

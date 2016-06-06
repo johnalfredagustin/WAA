@@ -15,6 +15,6 @@
         <div>It looks like something broke :S</div>
         <div>Please contact our technical support at</div>
         <div>support@cs545.edu</div>
-        <jsp:directive.include file="footer.jsp" />
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

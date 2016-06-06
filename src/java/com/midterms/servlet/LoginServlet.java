@@ -90,7 +90,10 @@ public class LoginServlet extends HttpServlet {
             view.forward(request, response);
         } else if (UserDB.login(username, password)) {
             request.setAttribute("currentUser", UserDB.getCurrentUser());
-            RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
+            
+            request.getSession().setAttribute("Auth", true);
+            String sp = this.getServletContext().getContextPath();
+            RequestDispatcher view = request.getRequestDispatcher("/private/welcome.jsp");
             view.forward(request, response);
         } else {
             response.sendRedirect("errlogin.jsp");

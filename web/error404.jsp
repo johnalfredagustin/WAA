@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>Opps it looks like the page you requested has disappeared.</h1>
-        <jsp:directive.include file="footer.jsp" />
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

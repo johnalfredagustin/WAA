@@ -28,6 +28,6 @@
             </table>
             <input type="submit" value="Start"/>
         </form>
-        <jsp:directive.include file="footer.jsp" />
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

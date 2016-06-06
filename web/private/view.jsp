@@ -13,7 +13,7 @@
         <title>View</title>
     </head>
     <body>
-        <jsp:directive.include file="header.jsp" />
+        <jsp:directive.include file="/template/header.jsp" />
         <form action="" method="post">
             <table>
                 <tr>
@@ -30,15 +30,16 @@
                         <td>${prod.name}</td>
                         <td>${prod.price}</td>
                         <td>${prod.description}</td>
-                        <td><a href="${'ModifyServlet?index='.concat(prod.index)}">Edit</a></td>
-                        <td><a href="${'DeleteServlet?index='.concat(prod.index)}">Delete</a></td>
+                        
+                        <td><a href="${ pageContext.request.contextPath.concat('/ModifyServlet?index=').concat(prod.index) }">Edit</a></td>
+                        <td><a href="${ pageContext.request.contextPath.concat('/DeleteServlet?index=').concat(prod.index) }">Delete</a></td>
                         <td></td>
                     </tr>
                 </c:forEach>
             </table>
             
         </form>
-        <form action="welcome.jsp"><input type="submit" value="Cancel"/></form>
-        <jsp:directive.include file="footer.jsp" />
+        <form action="<%= request.getContextPath().concat("/private/welcome.jsp")%>"><input type="submit" value="Cancel"/></form>
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

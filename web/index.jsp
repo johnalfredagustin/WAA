@@ -15,9 +15,9 @@
         <h1>This is the Midterm Programming Exam</h1>
         <h3>To start the web-application please click start.</h3>
         <h3>The number of current users currently logged in is: ${sessionCounter}</h3>
-        <form action="login.jsp" method="get">
+        <form action="login.jsp">
             <input type="submit" value="Start"/>
         </form>
-        <jsp:directive.include file="footer.jsp" />
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

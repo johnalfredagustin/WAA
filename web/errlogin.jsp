@@ -17,6 +17,6 @@
         <form action="login.jsp">
             <div><input type="submit" value="Go to Login Page"></div>
         </form>
-        <jsp:directive.include file="footer.jsp" />
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

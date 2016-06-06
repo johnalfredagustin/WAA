@@ -30,11 +30,11 @@
                 </tr>
                 <tr>
                     <td>Description:</td>
-                    <td><input type="text" name="description" value="${prod.description}"/></td>
+                    <td><input type="text" name="description" value='${prod.description}'/></td>
                     <td></td>
                 </tr>
             </table>
-            <input type="submit" name="submit" value="Cancel" />
+            
             
         
     </body>

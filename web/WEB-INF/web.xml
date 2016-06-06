@@ -1,7 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>FilterUserSession</filter-name>
+        <filter-class>com.midterms.filter.FilterUserSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUserSession</filter-name>
+        <url-pattern>/private/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>FilterUserSession2</filter-name>
+        <filter-class>com.midterms.filter.FilterUserSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUserSession2</filter-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>FilterUserSession3</filter-name>
+        <filter-class>com.midterms.filter.FilterUserSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUserSession3</filter-name>
+        <url-pattern>/AddServlet</url-pattern>
+    </filter-mapping>
+    
+    
+    <filter>
+        <filter-name>FilterUserSession4</filter-name>
+        <filter-class>com.midterms.filter.FilterUserSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUserSession4</filter-name>
+        <url-pattern>/DeleteServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>FilterUserSession5</filter-name>
+        <filter-class>com.midterms.filter.FilterUserSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUserSession5</filter-name>
+        <url-pattern>/ModifyServlet</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>FilterUserSession6</filter-name>
+        <filter-class>com.midterms.filter.FilterUserSession</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterUserSession6</filter-name>
+        <url-pattern>/ViewServlet</url-pattern>
+    </filter-mapping>
+    
+    
     <listener>
-        <description>ServletContextListener, HttpSessionListener</description>
+        <description>ServletContextListener, HttpSessionAttributeListener</description>
         <listener-class>com.midterms.listener.ServletListener</listener-class>
     </listener>
     <session-config>

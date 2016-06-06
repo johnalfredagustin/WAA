@@ -20,7 +20,7 @@ public class Product {
     private String description;
 
     public Product(String name, Double price, String description) {
-        this.index = ProductDB.getMaxIndex();
+        this.index = ProductDB.getMaxIndex() + 1;
         this.name = name;
         this.price = price;
         this.description = description;

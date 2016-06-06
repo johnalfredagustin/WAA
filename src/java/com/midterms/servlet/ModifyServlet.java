@@ -65,7 +65,7 @@ public class ModifyServlet extends HttpServlet {
             throws ServletException, IOException {
         String index = request.getParameter("index");
         request.setAttribute("prod", ProductDB.getProduct(Integer.parseInt(index)));
-        RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("private/modify.jsp");
         view.forward(request, response);
     }
 
@@ -88,7 +88,7 @@ public class ModifyServlet extends HttpServlet {
         String index = request.getParameter("index");
 
         if (submit.equalsIgnoreCase("cancel")) {
-            response.sendRedirect("welcome.jsp");
+            response.sendRedirect(this.getServletContext().getContextPath() + "/private/view.jsp");
         } else {
             //validation
             List<String> addErrMsg = new ArrayList<>();
@@ -100,16 +100,15 @@ public class ModifyServlet extends HttpServlet {
             request.setAttribute("addErrMsg", addErrMsg);
             if (name == null || name.equals("") || price == null || price.equals("")
                     || ((!price.equals("")) && ((!(Double.parseDouble(price) >= 1 && Double.parseDouble(price) <= 850))))) {
-                
+
                 request.setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
-                RequestDispatcher view = request.getRequestDispatcher("modify.jsp");
-                view.forward(request, response);
+
             } else if (ProductDB.modifyProduct(new Product(Integer.parseInt(index), name, Double.parseDouble(price), description))) {
                 getServletContext().setAttribute("prod", new Product(Integer.parseInt(index), name, Double.parseDouble(price), description));
                 getServletContext().setAttribute("productList", ProductDB.getProductList());
-                RequestDispatcher view = request.getRequestDispatcher("welcome.jsp");
-                view.forward(request, response);
             }
+            RequestDispatcher view = request.getRequestDispatcher("/private/view.jsp");
+            view.forward(request, response);
         }
 
     }

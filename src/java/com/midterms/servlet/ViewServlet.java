@@ -76,7 +76,7 @@ public class ViewServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         getServletContext().setAttribute("productList", ProductDB.getProductList());
-        RequestDispatcher view = request.getRequestDispatcher("view.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/private/view.jsp");
         view.forward(request, response);
     }
 

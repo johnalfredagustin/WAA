@@ -1,0 +1,72 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+
+body {
+    font-family: calibri;
+}
+
+.header {
+    background-color: blue;
+    color: blue;
+}
+
+.footer {
+    background-color: activecaption;
+}
+
+.ft ,.hd {
+    background-color: azure;
+}
+
+div {
+    margin: 10pt;
+}
+
+.logout {
+    position: fixed;
+    right: 10pt;
+    top: 10pt;
+    margin: 10pt;
+    width: 130pt;
+}
+
+.buttonClass {
+    margin: 10pt;
+    width: 130pt;
+}
+
+.errMsg {
+    color: red;
+}
+
+
+.viewtable {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    border: 1px black solid;
+    text-align: left;
+}
+
+.viewtable th {
+    background-color: lightblue;
+    border-color: gray;
+    border-spacing: 0px;
+    border: 1px gray solid;
+}
+
+.viewtable .thTitle {
+    width: 300px;
+}
+
+.viewtable td {
+    border-spacing: 0px;
+    border: 1px gray solid;
+}
+
+th, td {
+    padding: 10pt 10pt 10pt 10pt
+}
+

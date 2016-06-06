@@ -5,25 +5,24 @@
  */
 package com.midterms.servlet;
 
-import com.midterms.db.ProductDB;
-import com.midterms.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author John Agustin
  */
-@WebServlet(name = "DeleteServlet", urlPatterns = {"/DeleteServlet"})
-public class DeleteServlet extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,10 +41,10 @@ public class DeleteServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DeleteServlet</title>");
+            out.println("<title>Servlet LogoutServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet DeleteServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,13 +62,7 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String index = request.getParameter("index");
-        getServletContext().getAttribute("productList");
-        
-        ProductDB.removeProduct(Integer.parseInt(index));
-
-        RequestDispatcher view = request.getRequestDispatcher("/private/view.jsp");
-        view.forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -83,7 +76,17 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        request.getSession().removeAttribute("Auth");
+        
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+
+        RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+        view.forward(request, response);
+        
     }
 
     /**

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : add
-    Created on : Jun 4, 2016, 10:54:32 AM
+    Document   : edit
+    Created on : Jun 4, 2016, 11:53:05 AM
     Author     : John Agustin
 --%>
 
@@ -9,16 +9,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Add</title>
+        <title>Modify Product Info</title>
     </head>
     <body>
-        <jsp:directive.include file="header.jsp" />
-        <h3>Enter new Product info</h3>
-        <form action="AddServlet" method="post">
+        <h3>Modify Product Info</h3>
+        <form action="<%= request.getContextPath().concat("/ModifyServlet")%>" method="post">
             <jsp:directive.include file="addmodifyTemplate.jsp" />
             <input type="submit" name="submit" value="Cancel" />
-            <input type="submit" name="submit" value="Add" />
+            <input type="submit" name="submit" value="Modify" />
         </form>
-        <jsp:directive.include file="footer.jsp" />
+        <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>
