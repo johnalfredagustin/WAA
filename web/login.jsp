@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
     </head>
     <body>
         <h3>Please login to continue.</h3>
@@ -18,15 +19,15 @@
                 <tr>
                     <td>Username: </td>
                     <td><input type="text" name="username"></td>
-                    <td>${loginErrMsg.get(0)}</td>
+                    <td class="errMsg">${loginErrMsg.get(0)}</td>
                 </tr>
                 <tr>
                     <td>Password: </td>
                     <td><input type="password" name="password"></td>
-                    <td>${loginErrMsg.get(1)}</td>
+                    <td class="errMsg" >${loginErrMsg.get(1)}</td>
                 </tr>
             </table>
-            <input type="submit" value="Start"/>
+            <input type="submit" value="Login" class="buttonClass" />
         </form>
         <jsp:directive.include file="/template/footer.jsp" />
     </body>

@@ -12,6 +12,6 @@
     </head>
     <body>
         <h1>Welcome ${currentUser.name}</h1>
-        <form action="${ pageContext.request.contextPath.concat('/LogoutServlet') }" method="post"><input type="submit" value="Logout"/></form>
+        <form action="${ pageContext.request.contextPath.concat('/LogoutServlet') }" method="post"><input type="submit" value="Logout" class="logout"/></form>
     </body>
 </html>

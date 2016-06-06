@@ -10,13 +10,14 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
     </head>
     <body>
         <h1>This is the Midterm Programming Exam</h1>
         <h3>To start the web-application please click start.</h3>
         <h3>The number of current users currently logged in is: ${sessionCounter}</h3>
         <form action="login.jsp">
-            <input type="submit" value="Start"/>
+            <input type="submit" value="Start" class="buttonClass"/>
         </form>
         <jsp:directive.include file="/template/footer.jsp" />
     </body>

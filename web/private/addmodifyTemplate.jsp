@@ -21,12 +21,12 @@
                 <tr>
                     <td>Name:</td>
                     <td><input type="text" name="name" value="${prod.name}"/></td>
-                    <td>${addErrMsg.get(0)}</td>
+                    <td class="errMsg">${addErrMsg.get(0)}</td>
                 </tr>
                 <tr>
                     <td>Price:</td>
                     <td><input type="text" name="price" value="${prod.price}"/></td>
-                    <td>${addErrMsg.get(1)}</td>
+                    <td class="errMsg">${addErrMsg.get(1)}</td>
                 </tr>
                 <tr>
                     <td>Description:</td>

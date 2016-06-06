@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>View</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
     </head>
     <body>
         <jsp:directive.include file="/template/header.jsp" />
@@ -39,7 +40,7 @@
             </table>
             
         </form>
-        <form action="<%= request.getContextPath().concat("/private/welcome.jsp")%>"><input type="submit" value="Cancel"/></form>
+        <form action="<%= request.getContextPath().concat("/private/welcome.jsp")%>"><input type="submit" value="Cancel" class="buttonClass"/></form>
         <jsp:directive.include file="/template/footer.jsp" />
     </body>
 </html>

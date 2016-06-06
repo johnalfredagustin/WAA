@@ -30,12 +30,14 @@ div {
     right: 10pt;
     top: 10pt;
     margin: 10pt;
-    width: 130pt;
+    width: 150pt;
+    height: 25pt;
 }
 
 .buttonClass {
     margin: 10pt;
-    width: 130pt;
+    width: 150pt;
+    height: 25pt;
 }
 
 .errMsg {

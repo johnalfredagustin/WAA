@@ -10,12 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
     </head>
     <body>
         <h3>Sorry you are not are not authorized to view this page.</h3>
         <h3>Please login first.</h3>
         <form action="login.jsp">
-            <div><input type="submit" value="Go to Login Page"></div>
+            <div><input type="submit" value="Go to Login Page" class="buttonClass"></div>
         </form>
         <jsp:directive.include file="/template/footer.jsp" />
     </body>
